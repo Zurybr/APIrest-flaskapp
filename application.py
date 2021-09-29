@@ -1,7 +1,7 @@
 from flask import Flask,render_template,make_response,jsonify,request
 from data import comments
 application = Flask(__name__)
-PORT = 4000
+PORT = 80
 HOST = '0.0.0.0'
 
 @application.route("/")
