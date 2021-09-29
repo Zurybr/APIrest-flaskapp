@@ -1,19 +1,19 @@
 from flask import Flask,render_template,make_response,jsonify,request
 from data import comments
-app = Flask(__name__)
+application = Flask(__name__)
 PORT = 4000
 HOST = '0.0.0.0'
 
-@app.route("/")
+@application.route("/")
 def index():
     return render_template("./temp.html")
 
-@app.errorhandler(404)
+@application.errorhandler(404)
 def page_not_found():
     res=make_response(jsonify({"error":"page not found"}),400)
     return res
 
-@app.route ("/comments")
+@application.route ("/comments")
 def query_string():
     
     if 'postId' in request.args:
@@ -74,7 +74,7 @@ def query_string():
         iterador =+ 1
     res= make_response(jsonify(res),200)
     return res
-@app.route ("/comments",methods=['POST'])
+@application.route ("/comments",methods=['POST'])
 def post_query_string():
     res = {}
     iterador = 0
@@ -86,4 +86,5 @@ def post_query_string():
 
 if __name__  == "__main__":
     print("Server running in port {}".format(HOST))
-    app.run(host=HOST,port=PORT,debug=True)
+    application.run()
+    # host=HOST,port=PORT,debug=True
